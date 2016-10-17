@@ -24,17 +24,26 @@
       return $('.ghost').first();
     }
 
-    Ghost.prototype.animate = function() {
-
+    Ghost.prototype.animate = function(type) {
+      var thisGhost = this.info;
+      $(thisGhost.self).toggleClass(thisGhost[type]);
+      $(thisGhost.self).on('animationend', function() {
+        $(this).toggleClass(thisGhost[type]);
+      });
     }
 
     /* Ghost Constructor */
   function Ghost(context) {
     this.info = (context);
     this.info.self = this.buildGhost();
-    console.log(this.info);
+    this.animate('primary');
 
     allGhosts.push(this);
+
+    $(this.info.self).on ('click', (function() {
+      this.animate('secondary');
+    }).bind(this));
+
     storage.set();
   }
 
