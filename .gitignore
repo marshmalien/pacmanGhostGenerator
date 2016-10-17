@@ -1,0 +1,8 @@
+styles/.sass-cache
+styles/.sass-cache/*
+.sass-cache/
+*.map
+
+.DS_STORE
+npm-debug.log
+/node_modules
