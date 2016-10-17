@@ -13,9 +13,6 @@
     }
   }
 
-
-  // prototype has access to context inside of constructo
-  // prototype can see inside of Constructor
   Ghost.prototype.buildGhost = function() {
       var source = $('#ghost').html(),
         template = Handlebars.compile(source),
@@ -26,15 +23,18 @@
 
       return $('.ghost').first();
     }
+
+    Ghost.prototype.animate = function() {
+
+    }
+
     /* Ghost Constructor */
   function Ghost(context) {
-    // every ghost will have a context for it's self
     this.info = (context);
     this.info.self = this.buildGhost();
     console.log(this.info);
 
     allGhosts.push(this);
-    // grab the latest storage of allGhosts array
     storage.set();
   }
 
